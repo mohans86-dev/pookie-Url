@@ -35,6 +35,11 @@ async function handleGetAnalytics(req, res) {
 
 async function handleDELETEsavedUrls(req, res) {
   const shortid = req.params.shortId;
+  if (!shortid)
+    return res.status(400).json({
+      success: false,
+      msg: "url Id is not provided",
+    });
   const url = await URL.findOneAndDelete({ shortId: shortid });
   if (!url) {
     return res.status(404).json({
