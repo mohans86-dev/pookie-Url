@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      msg: "URLs fetched successfully",
+      msg: "All urls fetched successfully",
       token: user.token,
       urls: allUrls,
     });
