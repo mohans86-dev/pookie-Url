@@ -5,25 +5,35 @@ const User = require("../models/userModel");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  if (!req.user) {
-    return res.status(400).json({
-      success: false,
-      msg: "Login first",
+  try {
+    if (!req.user) {
+      return res.status(401).json({
+        success: false,
+        msg: "Sorry! you are not logged in",
+      });
+
+      // return res.redirect('/login');
+    }
+
+    const allUrls = await URL.find({ createdBy: req.user._id });
+    const user = await User.findById(req.user._id).select("token");
+
+    return res.status(200).json({
+      success: true,
+      msg: "URLs fetched successfully",
+      token: user.token,
+      urls: allUrls,
     });
 
-    // return res.redirect('/login');
+    // return res.render('home', { urls: allUrls });
+  } catch (error) {
+    console.error("Error fetching URLs:", error.message);
+    return res.status(500).json({
+      success: false,
+      msg: "Something went wrong",
+      error: error.message,
+    });
   }
-  const allUrls = await URL.find({ createdBy: req.user._id });
-  const authToken = await User.findOne({ _id: req.user._id });
-
-  return res.status(200).json({
-    success: true,
-    token: authToken.token,
-    urls: allUrls,
-  });
-  // return res.render('home',{
-  //     urls:allUrls,
-  // });
 });
 
 // router.get('/signup', (req, res)=>{

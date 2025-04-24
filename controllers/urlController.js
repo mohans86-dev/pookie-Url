@@ -24,15 +24,6 @@ async function handlePOSTgenerateNewShortUrl(req, res) {
   // });
 }
 
-async function handleGetAnalytics(req, res) {
-  const shortId = req.params.shortId;
-  const result = await URL.findOne({ shortId });
-  return res.json({
-    totalClicks: result.visitHistory.length,
-    analytics: result.visitHistory,
-  });
-}
-
 async function handleDELETEsavedUrls(req, res) {
   const shortid = req.params.shortId;
   if (!shortid)
@@ -51,6 +42,15 @@ async function handleDELETEsavedUrls(req, res) {
   return res.status(200).json({
     success: true,
     msg: "URL deleted successfully",
+  });
+}
+
+async function handleGetAnalytics(req, res) {
+  const shortId = req.params.shortId;
+  const result = await URL.findOne({ shortId });
+  return res.json({
+    totalClicks: result.visitHistory.length,
+    analytics: result.visitHistory,
   });
 }
 
