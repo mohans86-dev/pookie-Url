@@ -18,11 +18,19 @@ async function handlePOSTuserSignup(req, res) {
 
     // res.redirect('/login');
   } catch (error) {
-    console.error("Signup Error:", error.message);
+    // Handle Duplicate Key Error (MongoDB)
+    if (error.code === 11000) {
+      const field = Object.keys(error.keyPattern)[0];
+      return res.status(409).json({
+        success: false,
+        msg: `The ${field} already exists.`,
+      });
+    }
+
+    // Other server error
     return res.status(500).json({
       success: false,
-      msg: "Registration failed",
-      error: error.message,
+      msg: "Server error while registering user",
     });
   }
 }
@@ -62,11 +70,10 @@ async function handlePOSTuserLogin(req, res) {
 
     // res.redirect('/');
   } catch (error) {
-    console.error("Login Error:", error.message);
+    // Other server error
     return res.status(500).json({
       success: false,
-      msg: "An error occurred during login",
-      error: error.message,
+      msg: "Server error while registering user",
     });
   }
 }
