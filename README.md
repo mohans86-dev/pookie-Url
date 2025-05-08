@@ -29,9 +29,6 @@ This project combines a robust backend built with **Node.js**, **Express.js**, a
 
 ## 📷 Screenshots
 ![img4](https://github.com/user-attachments/assets/6b042ef3-b4fa-4bfa-9bcc-64f08248794c)
-![img3](https://github.com/user-attachments/assets/baebf5a6-16f9-4895-9913-5804ec4f9118)
-![img2](https://github.com/user-attachments/assets/63f3a68f-39be-4a03-9b71-68dfaaa9cb33)
-![img1](https://github.com/user-attachments/assets/0c2c4ddc-33db-4032-bd49-d6a0f518f1af)
 
 ## Demo
 
