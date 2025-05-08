@@ -37,8 +37,6 @@ This project combines a robust backend built with **Node.js**, **Express.js**, a
 
 ## Demo
 
-![pookeiUrl_demo](https://github.com/user-attachments/assets/7bb5ff6b-ca55-47bc-a0a6-2d63e892fe1e)
-
-
+![pookeiUrl_demo](https://github.com/user-attachments/assets/f2be2dc7-b083-426c-aca7-f00c43d10366)
 
 ---
