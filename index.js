@@ -26,14 +26,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// for test api
-app.get("/", (req, res) => {
-  return res.status(200).json({
-    success: true,
-    msg: "Successfully running",
-  });
-});
-
 // for redirecting the urls with original urls
 app.get("/url/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
@@ -50,6 +42,14 @@ app.get("/url/:shortId", async (req, res) => {
     }
   );
   res.redirect(entry.redirectURL);
+});
+
+// for test api
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    success: true,
+    msg: "Successfully running",
+  });
 });
 
 app.use("/user", userRoute); // for signup and login
